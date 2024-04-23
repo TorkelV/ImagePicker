@@ -8,6 +8,7 @@ import com.github.dhaval2404.imagepicker.ImagePicker
 import com.github.dhaval2404.imagepicker.ImagePickerActivity
 import com.github.dhaval2404.imagepicker.R
 import com.github.dhaval2404.imagepicker.util.IntentUtils
+import java.lang.Exception
 
 /**
  * Select image from Storage
@@ -83,6 +84,11 @@ class GalleryProvider(activity: ImagePickerActivity) :
      * taken, the permission grant will be remembered across device reboots.
      */
     private fun takePersistableUriPermission(uri: Uri) {
-        contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        try {
+            contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        } catch (ex: Exception){
+            ex.printStackTrace()
+        }
+
     }
 }
